@@ -3,23 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BioÓptica - Anatomia do Olho Humano</title>
+    <title>BioÓptica - Estrutura e Mecânica do Olho Humano</title>
+    
     <!-- Google Fonts -->
-    <link rel="preconnect" href="https://googleapis.com">
-    <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
     
     <style>
-        /* CSS Reset e Variáveis */
         :root {
             --bg-main: #0a0a0f;
             --bg-card: #11111a;
-            --bg-card-hover: #161622;
+            --bg-card-hover: #161624;
             --accent: #00d2ff;
             --accent-rgb: 0, 210, 255;
+            --accent-glow: rgba(0, 210, 255, 0.15);
             --text-main: #f3f4f6;
             --text-muted: #9ca3af;
             --border: #1f1f2e;
+            --border-hover: rgba(0, 210, 255, 0.4);
             --font-heading: 'Outfit', sans-serif;
             --font-body: 'Source Sans 3', sans-serif;
         }
@@ -40,15 +42,17 @@
             font-family: var(--font-body);
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
+            line-height: 1.6;
         }
 
         h1, h2, h3, h4 {
             font-family: var(--font-heading);
             font-weight: 600;
             letter-spacing: -0.02em;
+            color: var(--text-main);
         }
 
-        /* Navbar Fixa */
+        /* Navbar */
         .navbar {
             position: fixed;
             top: 0;
@@ -57,8 +61,9 @@
             z-index: 1000;
             border-bottom: 1px solid var(--border);
             background: rgba(10, 10, 15, 0.85);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            transition: border-color 0.3s ease;
         }
 
         .nav-container {
@@ -74,10 +79,12 @@
             font-family: var(--font-heading);
             font-size: 1.25rem;
             font-weight: 700;
-            text-transform: uppercase;
             letter-spacing: 0.05em;
             color: var(--text-main);
             text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         .nav-logo span {
@@ -86,7 +93,7 @@
 
         .nav-links {
             display: flex;
-            gap: 2.5rem;
+            gap: 2rem;
             list-style: none;
         }
 
@@ -102,14 +109,14 @@
             color: var(--accent);
         }
 
-        /* Container de Seções */
+        /* Seções e Transições */
         section {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 8rem 2rem;
+            padding: 6rem 2rem;
             opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            transform: translateY(24px);
+            transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         section.visible {
@@ -117,12 +124,31 @@
             transform: translateY(0);
         }
 
+        .section-header {
+            margin-bottom: 3.5rem;
+        }
+
+        .section-header span {
+            font-family: var(--font-heading);
+            color: var(--accent);
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-header h2 {
+            font-size: clamp(2rem, 3.5vw, 2.5rem);
+        }
+
         /* Hero Section */
         .hero {
             min-height: 100vh;
             display: flex;
             align-items: center;
-            padding-top: 6rem;
+            padding-top: 8rem;
             position: relative;
         }
 
@@ -130,10 +156,10 @@
             content: '';
             position: absolute;
             top: 20%;
-            right: 10%;
-            width: 450px;
-            height: 450px;
-            background: radial-gradient(circle, rgba(var(--accent-rgb), 0.04) 0%, transparent 70%);
+            right: 5%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(var(--accent-rgb), 0.08) 0%, transparent 70%);
             pointer-events: none;
         }
 
@@ -143,6 +169,23 @@
             gap: 4rem;
             align-items: center;
             width: 100%;
+        }
+
+        .hero-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: var(--font-heading);
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            padding: 0.3rem 0.8rem;
+            background: rgba(var(--accent-rgb), 0.06);
+            border: 1px solid rgba(var(--accent-rgb), 0.2);
+            border-radius: 4px;
         }
 
         .hero-title {
@@ -158,7 +201,7 @@
         .hero-description {
             font-size: 1.15rem;
             color: var(--text-muted);
-            line-height: 1.6;
+            line-height: 1.7;
             margin-bottom: 2.5rem;
             max-width: 600px;
         }
@@ -173,14 +216,14 @@
         .btn {
             display: inline-flex;
             align-items: center;
-            justify-content: center;
+            gap: 0.6rem;
             padding: 0.85rem 1.75rem;
             font-family: var(--font-heading);
             font-size: 0.95rem;
             font-weight: 500;
             text-decoration: none;
             border-radius: 4px;
-            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
             cursor: pointer;
         }
 
@@ -191,9 +234,9 @@
         }
 
         .btn-primary:hover {
-            background-color: #00bce6;
+            background-color: #00bfe6;
             transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(var(--accent-rgb), 0.15);
+            box-shadow: 0 8px 24px var(--accent-glow);
         }
 
         .btn-secondary {
@@ -204,273 +247,662 @@
 
         .btn-secondary:hover {
             border-color: var(--text-muted);
-            background-color: rgba(255, 255, 255, 0.02);
+            background-color: rgba(255, 255, 255, 0.03);
+            transform: translateY(-2px);
         }
 
-        /* Ilustração Abstrata de Lente (SVG) */
+        /* SVG Visual Hero */
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
         .hero-visual svg {
             width: 100%;
+            max-width: 420px;
             height: auto;
-            max-width: 380px;
-            display: block;
-            margin: 0 auto;
+            filter: drop-shadow(0 0 30px rgba(var(--accent-rgb), 0.1));
         }
 
-        /* Sobre o Tema Section */
-        .section-header {
-            margin-bottom: 3.5rem;
-        }
-
-        .section-header span {
-            font-family: var(--font-heading);
-            color: var(--accent);
-            text-transform: uppercase;
-            font-size: 0.85rem;
-            letter-spacing: 0.1em;
-            display: block;
-            margin-bottom: 0.5rem;
-        }
-
-        .section-header h2 {
-            font-size: 2.25rem;
-        }
-
+        /* Sobre e Badges */
         .about-layout {
             display: grid;
-            grid-template-columns: 1fr 1.2fr;
-            gap: 4rem;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
         }
 
         .about-text p {
             font-size: 1.05rem;
             color: var(--text-muted);
-            line-height: 1.7;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.25rem;
         }
 
-        .about-anatomy {
+        .skills-card {
             background: var(--bg-card);
             border: 1px solid var(--border);
             border-radius: 8px;
-            padding: 2.5rem;
+            padding: 2.25rem;
         }
 
-        .about-anatomy h3 {
-            font-size: 1.25rem;
+        .skills-card h3 {
+            font-size: 1.2rem;
             margin-bottom: 1.5rem;
-            color: var(--text-main);
         }
 
-        /* Skills/Badges Visuais */
-        .skills-container {
+        .badge-list {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.75rem;
+            gap: 0.65rem;
         }
 
         .badge-tag {
-            background-color: rgba(255, 255, 255, 0.03);
+            background: rgba(255, 255, 255, 0.02);
             border: 1px solid var(--border);
             color: var(--text-main);
-            padding: 0.4rem 0.9rem;
+            padding: 0.45rem 0.9rem;
             border-radius: 4px;
             font-size: 0.85rem;
             font-weight: 500;
-            letter-spacing: 0.02em;
-            transition: border-color 0.2s, background-color 0.2s;
+            transition: all 0.2s ease;
         }
 
         .badge-tag:hover {
             border-color: var(--accent);
-            background-color: rgba(var(--accent-rgb), 0.02);
+            background: rgba(var(--accent-rgb), 0.05);
+            color: var(--accent);
         }
 
-        /* Detalhes Anatômicos Expandidos */
-        .details-grid {
+        /* Grid de Componentes Anatômicos */
+        .anatomy-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 1.5rem;
         }
 
-        .detail-card {
-            background-color: var(--bg-card);
+        .anatomy-card {
+            background: var(--bg-card);
             border: 1px solid var(--border);
             border-radius: 8px;
             padding: 2rem;
-            transition: border-color 0.2s;
+            transition: all 0.3s ease;
         }
 
-        .detail-card:hover {
-            border-color: rgba(var(--accent-rgb), 0.4);
+        .anatomy-card:hover {
+            border-color: var(--border-hover);
+            background: var(--bg-card-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
         }
 
-        .detail-card h3 {
+        .anatomy-card h3 {
             font-size: 1.2rem;
             margin-bottom: 0.75rem;
-            color: var(--text-main);
             display: flex;
             align-items: center;
             gap: 0.5rem;
         }
 
-        .detail-card h3::before {
+        .anatomy-card h3::before {
             content: '';
-            display: inline-block;
             width: 4px;
             height: 16px;
             background-color: var(--accent);
             border-radius: 2px;
+            display: inline-block;
         }
 
-        .detail-card p {
+        .anatomy-card p {
             font-size: 0.95rem;
             color: var(--text-muted);
             line-height: 1.6;
         }
 
-        /* Mecanismo de Funcionamento do Olho */
-        .mechanism-box {
-            background-color: var(--bg-card);
+        /* Mecânica de Funcionamento */
+        .mechanism-wrapper {
+            background: var(--bg-card);
             border: 1px solid var(--border);
             border-radius: 8px;
             padding: 3rem;
-            margin-top: 4rem;
+            margin-top: 2rem;
         }
 
         .mechanism-steps {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2.5rem;
-            margin-top: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 2rem;
+            margin-top: 2.5rem;
         }
 
-        .step {
+        .step-item {
             position: relative;
         }
 
-        .step-num {
+        .step-number {
             font-family: var(--font-heading);
-            font-size: 2rem;
+            font-size: 2.5rem;
             font-weight: 700;
-            color: rgba(var(--accent-rgb), 0.2);
+            color: rgba(var(--accent-rgb), 0.25);
             line-height: 1;
+            margin-bottom: 0.75rem;
+        }
+
+        .step-item h4 {
+            font-size: 1.15rem;
             margin-bottom: 0.5rem;
         }
 
-        .step h4 {
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .step p {
-            font-size: 0.9rem;
+        .step-item p {
+            font-size: 0.92rem;
             color: var(--text-muted);
             line-height: 1.6;
         }
-            <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border);">
-                <h4 style="margin-bottom: 0.75rem; font-size: 1.2rem;">A Genética Ocular e a Cor da Íris</h4>
-                <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.7;">
-                    A coloração ocular decorre de uma herança genética poligênica complexa com interações de múltiplos genes. A densidade e a tipologia dos pigmentos na íris regulam a cor final. Visualmente, a íris distribui-se estruturalmente em dois anéis concêntricos (um contorno externo tipicamente mais denso e escuro e um anel interno), intervalados por uma zona intermediária clara. Manifesta-se globalmente em quatro matrizes cromáticas dominantes: o castanho, o verde, o azul e o cinzento.
-                </p>
+
+        /* Genética e Cores */
+        .genetics-container {
+            margin-top: 3.5rem;
+            padding-top: 2.5rem;
+            border-top: 1px solid var(--border);
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .color-chips {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .color-chip {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border);
+            padding: 1rem;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .color-dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+        }
+
+        .dot-brown { background-color: #8b5a2b; }
+        .dot-green { background-color: #2e8b57; }
+        .dot-blue { background-color: #4682b4; }
+        .dot-grey { background-color: #708090; }
+
+        /* Cards de Projetos */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 2.25rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .project-card:hover {
+            border-color: var(--border-hover);
+            background: var(--bg-card-hover);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1.25rem;
+        }
+
+        .project-card h3 {
+            font-size: 1.3rem;
+            color: var(--text-main);
+        }
+
+        .project-desc {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .project-footer {
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        .project-techs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tech-badge {
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 0.25rem 0.6rem;
+            border-radius: 3px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .tech-js { background: rgba(247, 223, 30, 0.1); color: #f7df1e; border: 1px solid rgba(247, 223, 30, 0.3); }
+        .tech-ts { background: rgba(49, 120, 198, 0.1); color: #3178c6; border: 1px solid rgba(49, 120, 198, 0.3); }
+        .tech-python { background: rgba(55, 115, 165, 0.1); color: #58a6ff; border: 1px solid rgba(55, 115, 165, 0.3); }
+        .tech-generic { background: rgba(255, 255, 255, 0.05); color: var(--text-muted); border: 1px solid var(--border); }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .project-link:hover {
+            color: var(--accent);
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 4rem 2rem 3rem;
+            background: #08080c;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .footer-credit {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* Responsividade */
+        @media (max-width: 900px) {
+            .hero-grid, .about-layout, .genetics-container {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+
+            .hero {
+                padding-top: 7rem;
+                min-height: auto;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .mechanism-wrapper {
+                padding: 1.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header / Navbar -->
+    <header>
+        <nav class="navbar">
+            <div class="nav-container">
+                <a href="#" class="nav-logo">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><line x1="21.17" y1="8" x2="12" y2="8"/><line x1="3.95" y1="6.06" x2="8.54" y2="14"/><line x1="10.88" y1="21.94" x2="15.46" y2="14"/></svg>
+                    Bio<span>Óptica</span>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="#sobre">Sobre o Tema</a></li>
+                    <li><a href="#estruturas">Componentes</a></li>
+                    <li><a href="#funcionamento">Mecânica Visual</a></li>
+                    <li><a href="#projetos">Projetos</a></li>
+                </ul>
             </div>
-        </div>
-    </section>
+        </nav>
+    </header>
 
-    <section id="projetos">
-        <div class="section-header">
-            <span>Repositórios de Engenharia</span>
-            <h2>Aplicações Práticas Desenvolvidas</h2>
-        </div>
-        <div class="projects-grid">
+    <main>
+        <!-- Hero Section -->
+        <section class="hero" id="hero">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <div class="hero-eyebrow">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="3"/><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/></svg>
+                        Anatomia & Engenharia Óptica
+                    </div>
+                    <h1 class="hero-title">A Estrutura e Mecânica do <span>Olho Humano</span></h1>
+                    <p class="hero-description">
+                        Um complexo sistema bio-óptico capaz de distinguir até 10 mil cores, focalizar fótons com precisão milimétrica e converter feixes de luz em impulsos eletroquímicos interpretados pelo cérebro.
+                    </p>
+                    <div class="hero-actions">
+                        <a href="#projetos" class="btn btn-primary">
+                            Ver Projetos
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                        </a>
+                        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                            LinkedIn
+                        </a>
+                        <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                            GitHub
+                        </a>
+                    </div>
+                </div>
+
+                <div class="hero-visual">
+                    <svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Esboço Óptico Vetorial -->
+                        <circle cx="200" cy="200" r="160" stroke="#1f1f2e" stroke-width="2" />
+                        <circle cx="200" cy="200" r="150" stroke="#00d2ff" stroke-width="1.5" stroke-dasharray="4 6" opacity="0.3" />
+                        
+                        <!-- Córnea e Cristalino -->
+                        <path d="M80 140 C110 170, 110 230, 80 260" stroke="#00d2ff" stroke-width="3" stroke-linecap="round" />
+                        <ellipse cx="140" cy="200" rx="14" ry="45" stroke="#00d2ff" stroke-width="2" fill="rgba(0, 210, 255, 0.05)" />
+                        
+                        <!-- Íris e Pupila -->
+                        <line x1="135" y1="130" x2="135" y2="170" stroke="#f3f4f6" stroke-width="3" stroke-linecap="round" />
+                        <line x1="135" y1="230" x2="135" y2="270" stroke="#f3f4f6" stroke-width="3" stroke-linecap="round" />
+                        
+                        <!-- Feixes de Luz e Refração -->
+                        <path d="M20 160 L80 160 L140 175 L330 200" stroke="#00d2ff" stroke-width="1.5" opacity="0.8" />
+                        <path d="M20 200 L80 200 L140 200 L330 200" stroke="#00d2ff" stroke-width="2" opacity="0.9" />
+                        <path d="M20 240 L80 240 L140 225 L330 200" stroke="#00d2ff" stroke-width="1.5" opacity="0.8" />
+                        
+                        <!-- Foco na Retina / Fóvea -->
+                        <circle cx="330" cy="200" r="5" fill="#00d2ff" />
+                        <path d="M330 140 C360 170, 360 230, 330 260" stroke="#f3f4f6" stroke-width="2" opacity="0.4" />
+                        
+                        <!-- Nervo Óptico -->
+                        <path d="M345 210 L390 225 M345 220 L390 235" stroke="#1f1f2e" stroke-width="4" stroke-linecap="round" />
+                    </svg>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sobre o Tema & Badges -->
+        <section id="sobre">
+            <div class="section-header">
+                <span>Introdução e Escopo</span>
+                <h2>Fundamentos da Visão Biológica</h2>
+            </div>
+            <div class="about-layout">
+                <div class="about-text">
+                    <p>
+                        Os olhos são os órgãos responsáveis pela visão dos animais. No ser humano, essa estrutura atua como um sistema óptico refinado de lentes convergentes e camadas fotossensíveis capazes de captar comprimentos de onda eletromagnéticos e refratá-los com acurácia.
+                    </p>
+                    <p>
+                        Esta apresentação consolida a anatomia estrutural, desde as membranas protetoras externas até os processos fotoquímicos da retina, além da base genética responsável pelos padrões cromáticos da íris.
+                    </p>
+                </div>
+                <div class="skills-card">
+                    <h3>Áreas de Domínio & Conceitos-Chave</h3>
+                    <div class="badge-list">
+                        <span class="badge-tag">Refração Óptica</span>
+                        <span class="badge-tag">Fototransdução</span>
+                        <span class="badge-tag">Esclera & Conjuntiva</span>
+                        <span class="badge-tag">Dinâmica do Cristalino</span>
+                        <span class="badge-tag">Genética Poligênica</span>
+                        <span class="badge-tag">Pressão Intraocular</span>
+                        <span class="badge-tag">Transmissão Neural</span>
+                        <span class="badge-tag">Modelagem 3D Anatômica</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Componentes do Olho Humano -->
+        <section id="estruturas">
+            <div class="section-header">
+                <span>Morfologia Estrutural</span>
+                <h2>Componentes do Olho Humano</h2>
+            </div>
+            <div class="anatomy-grid">
+                <article class="anatomy-card">
+                    <h3>Esclera</h3>
+                    <p>Membrana fibrosa protetora do globo ocular, vulgarmente chamada de "branco dos olhos". É recoberta pela conjuntiva, uma membrana mucosa, delgada e transparente.</p>
+                </article>
+
+                <article class="anatomy-card">
+                    <h3>Córnea</h3>
+                    <p>Parte transparente do olho constituída por uma fina e resistente membrana. Atua diretamente na transmissão de luz, refração inicial e proteção do sistema óptico.</p>
+                </article>
+
+                <article class="anatomy-card">
+                    <h3>Coroide</h3>
+                    <p>Membrana intermediária densamente vascularizada, responsável direta pelo suprimento de oxigênio e nutrição de todo o globo ocular.</p>
+                </article>
+
+                <article class="anatomy-card">
+                    <h3>Corpo Ciliar</h3>
+                    <p>Estrutura especializada que secreta o humor aquoso e abriga a musculatura lisa encarregada da acomodação e ajuste focal do cristalino.</p>
+                </article>
+
+                <article class="anatomy-card">
+                    <h3>Íris & Pupila</h3>
+                    <p>Disco pigmentado que envolve a pupila. Funciona como um diafragma regulador, expandindo ou contraindo a abertura para dosar a entrada de luz.</p>
+                </article>
+
+                <article class="anatomy-card">
+                    <h3>Retina</h3>
+                    <p>A camada mais interna e nobre. Possui milhões de fotorreceptores que convertem luz em sinais enviados pelo nervo óptico até o cérebro para gerar a imagem.</p>
+                </article>
+
+                <article class="anatomy-card">
+                    <h3>Cristalino (Lente)</h3>
+                    <p>Lente biconvexa e flexível localizada atrás da íris. Modifica dinamicamente sua curvatura para realizar a acomodação visual e focalização nítida na retina.</p>
+                </article>
+
+                <article class="anatomy-card">
+                    <h3>Humor Aquoso</h3>
+                    <p>Fluido transparente situado entre a córnea e o cristalino com a atribuição de nutrir tecidos avasculares e manter estável a pressão intraocular.</p>
+                </article>
+
+                <article class="anatomy-card">
+                    <h3>Humor Vítreo</h3>
+                    <p>Substância gelatinosa e transparente que ocupa o amplo espaço posterior entre o cristalino e a retina, garantindo o formato esférico do olho.</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- Como Funcionam os Olhos e Genética -->
+        <section id="funcionamento">
+            <div class="section-header">
+                <span>Fisiologia da Visão</span>
+                <h2>Mecânica Óptica & Dinâmica da Cor</h2>
+            </div>
             
-            <!-- Card Projeto 1 -->
-            <article class="project-card">
-                <div class="project-lang-indicator">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f7df1e" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-                </div>
-                <div>
-                    <h3>Ocularis-Simulation</h3>
-                    <p class="project-desc">Simulador matemático de refração luminosa na córnea. Resolve problemas de cálculo geométrico de desvios focais em tempo real conforme a variação de espessura do tecido corneano.</p>
-                </div>
-                <div class="project-footer">
-                    <div class="project-techs">
-                        <span class="tech-badge tech-js">JavaScript</span>
-                        <span class="tech-badge tech-html">HTML5</span>
-                        <span class="tech-badge tech-css">CSS3</span>
+            <div class="mechanism-wrapper">
+                <h3 style="font-size: 1.4rem;">O Caminho da Luz até a Interpretação Cerebral</h3>
+                <div class="mechanism-steps">
+                    <div class="step-item">
+                        <div class="step-number">01</div>
+                        <h4>Entrada e Regulação</h4>
+                        <p>A luz incide sobre a córnea e passa pela íris, onde a abertura da pupila controla a intensidade lumínica admitida.</p>
                     </div>
-                    <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="project-link">
-                        Acessar Repositório
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-                    </a>
-                </div>
-            </article>
-
-            <!-- Card Projeto 2 -->
-            <article class="project-card">
-                <div class="project-lang-indicator">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3178c6" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-                </div>
-                <div>
-                    <h3>Anatomy-3D-Rendering</h3>
-                    <p class="project-desc">Renderizador tridimensional estrito focado nas camadas concêntricas do olho (esclera, coroide e retina). Permite a manipulação livre de câmera e corte seccional dos tecidos.</p>
-                </div>
-                <div class="project-footer">
-                    <div class="project-techs">
-                        <span class="tech-badge tech-ts">TypeScript</span>
-                        <span class="tech-badge tech-webgl">WebGL</span>
+                    <div class="step-item">
+                        <div class="step-number">02</div>
+                        <h4>Focalização Dinâmica</h4>
+                        <p>Os raios alcançam o cristalino, que altera sua espessura para convergir os feixes perfeitamente sobre a superfície da retina.</p>
                     </div>
-                    <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="project-link">
-                        Acessar Repositório
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-                    </a>
-                </div>
-            </article>
-
-            <!-- Card Projeto 3 -->
-            <article class="project-card">
-                <div class="project-lang-indicator">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3773a5" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                </div>
-                <div>
-                    <h3>Iris-Genetics-Predictor</h3>
-                    <p class="project-desc">Mapeador poligênico probabilístico implementado para calcular variações fenotípicas da cor da íris de acordo com a amostragem genética fornecida.</p>
-                </div>
-                <div class="project-footer">
-                    <div class="project-techs">
-                        <span class="tech-badge tech-python">Python</span>
-                        <span class="tech-badge tech-js">JavaScript</span>
+                    <div class="step-item">
+                        <div class="step-number">03</div>
+                        <h4>Fototransdução</h4>
+                        <p>Milhões de fotorreceptores retinianos convertem as ondas de luz em impulsos eletroquímicos via reações fotoquímicas.</p>
                     </div>
-                    <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="project-link">
-                        Acessar Repositório
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-                    </a>
+                    <div class="step-item">
+                        <div class="step-number">04</div>
+                        <h4>Processamento Neural</h4>
+                        <p>Os impulsos trafegam através do nervo óptico até o córtex visual cerebral, onde a imagem tridimensional é decodificada.</p>
+                    </div>
                 </div>
-            </article>
-        </div>
-    </section>
 
+                <div class="genetics-container">
+                    <div>
+                        <h4 style="font-size: 1.25rem; margin-bottom: 0.75rem;">A Genética Ocular e a Cor da Íris</h4>
+                        <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.7;">
+                            A coloração ocular decorre de uma herança genética poligênica determinada pela interação de múltiplos alelos que definem a densidade e o tipo de melanina na íris. A distribuição do pigmento organiza-se em dois círculos concêntricos: um bordo externo geralmente mais escuro e um anel interno, separados por uma zona intermediária clara.
+                        </p>
+                    </div>
+                    <div class="color-chips">
+                        <div class="color-chip">
+                            <span class="color-dot dot-brown"></span>
+                            <span style="font-size: 0.9rem; font-weight: 500;">Castanho</span>
+                        </div>
+                        <div class="color-chip">
+                            <span class="color-dot dot-green"></span>
+                            <span style="font-size: 0.9rem; font-weight: 500;">Verde</span>
+                        </div>
+                        <div class="color-chip">
+                            <span class="color-dot dot-blue"></span>
+                            <span style="font-size: 0.9rem; font-weight: 500;">Azul</span>
+                        </div>
+                        <div class="color-chip">
+                            <span class="color-dot dot-grey"></span>
+                            <span style="font-size: 0.9rem; font-weight: 500;">Cinzento</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Repositórios / Projetos -->
+        <section id="projetos">
+            <div class="section-header">
+                <span>Engenharia & Implementações</span>
+                <h2>Projetos e Modelos Desenvolvidos</h2>
+            </div>
+            <div class="projects-grid">
+                
+                <!-- Projeto 1 -->
+                <article class="project-card">
+                    <div>
+                        <div class="project-header">
+                            <h3>Ocularis-Simulation</h3>
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#f7df1e" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                        </div>
+                        <p class="project-desc">
+                            Simulador interativo de refração geométrica corneana e acomodação do cristalino. Calcula em tempo real desvios focais (dioptrias) de acordo com variações biométricas.
+                        </p>
+                    </div>
+                    <div class="project-footer">
+                        <div class="project-techs">
+                            <span class="tech-badge tech-js">JavaScript</span>
+                            <span class="tech-badge tech-generic">Canvas API</span>
+                            <span class="tech-badge tech-generic">Óptica Física</span>
+                        </div>
+                        <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="project-link">
+                            Acessar Repositório
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Projeto 2 -->
+                <article class="project-card">
+                    <div>
+                        <div class="project-header">
+                            <h3>Anatomy-3D-Rendering</h3>
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3178c6" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                        </div>
+                        <p class="project-desc">
+                            Renderizador tridimensional em WebGL com dissecação em camadas (esclera, coroide, retina e humores). Permite controle orbital de câmera e corte tomográfico.
+                        </p>
+                    </div>
+                    <div class="project-footer">
+                        <div class="project-techs">
+                            <span class="tech-badge tech-ts">TypeScript</span>
+                            <span class="tech-badge tech-generic">WebGL</span>
+                            <span class="tech-badge tech-generic">Three.js</span>
+                        </div>
+                        <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="project-link">
+                            Acessar Repositório
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Projeto 3 -->
+                <article class="project-card">
+                    <div>
+                        <div class="project-header">
+                            <h3>Iris-Genetics-Predictor</h3>
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#58a6ff" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        </div>
+                        <p class="project-desc">
+                            Modelo estatístico poligênico (baseado nos genes HERC2/OCA2) para predição probabilística da cor da íris e distribuição de anéis pigmentares.
+                        </p>
+                    </div>
+                    <div class="project-footer">
+                        <div class="project-techs">
+                            <span class="tech-badge tech-python">Python</span>
+                            <span class="tech-badge tech-generic">NumPy</span>
+                            <span class="tech-badge tech-generic">Bioestatística</span>
+                        </div>
+                        <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="project-link">
+                            Acessar Repositório
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                        </a>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- Rodapé -->
     <footer>
         <div class="footer-container">
             <span class="nav-logo">Bio<span>Óptica</span></span>
-            <p class="footer-credit">&copy; 2026 Portfólio de Apresentação Científica. Desenvolvido sob rígidos padrões semânticos.</p>
+            <p class="footer-credit">&copy; 2026 Portfólio de Apresentação Científica. Desenvolvido com HTML5 semântico e CSS puro.</p>
         </div>
     </footer>
 
+    <!-- Script de Animação ao Scroll -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const sections = document.querySelectorAll('section');
             
             const observerOptions = {
                 root: null,
-                rootMargin: '0px',
-                threshold: 0.15
+                rootMargin: '0px 0px -50px 0px',
+                threshold: 0.1
             };
 
-            const observer = new IntersectionObserver((entries, observer) => {
+            const observer = new IntersectionObserver((entries, obs) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('visible');
-                        observer.unobserve(entry.target);
+                        obs.unobserve(entry.target);
                     }
                 });
             }, observerOptions);
