@@ -56,7 +56,7 @@
             width: 100%;
             z-index: 1000;
             border-bottom: 1px solid var(--border);
-            background: rgba(10, 10, 15, 0.7);
+            background: rgba(10, 10, 15, 0.85);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
         }
@@ -108,8 +108,8 @@
             margin: 0 auto;
             padding: 8rem 2rem;
             opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
         }
 
         section.visible {
@@ -367,12 +367,118 @@
             color: var(--text-muted);
             line-height: 1.6;
         }
+            <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border);">
+                <h4 style="margin-bottom: 0.75rem; font-size: 1.2rem;">A Genética Ocular e a Cor da Íris</h4>
+                <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.7;">
+                    A coloração ocular decorre de uma herança genética poligênica complexa com interações de múltiplos genes. A densidade e a tipologia dos pigmentos na íris regulam a cor final. Visualmente, a íris distribui-se estruturalmente em dois anéis concêntricos (um contorno externo tipicamente mais denso e escuro e um anel interno), intervalados por uma zona intermediária clara. Manifesta-se globalmente em quatro matrizes cromáticas dominantes: o castanho, o verde, o azul e o cinzento.
+                </p>
+            </div>
+        </div>
+    </section>
 
-        /* Projetos Section */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-            gap: 2rem;
-        }
+    <section id="projetos">
+        <div class="section-header">
+            <span>Repositórios de Engenharia</span>
+            <h2>Aplicações Práticas Desenvolvidas</h2>
+        </div>
+        <div class="projects-grid">
+            
+            <!-- Card Projeto 1 -->
+            <article class="project-card">
+                <div class="project-lang-indicator">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f7df1e" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                </div>
+                <div>
+                    <h3>Ocularis-Simulation</h3>
+                    <p class="project-desc">Simulador matemático de refração luminosa na córnea. Resolve problemas de cálculo geométrico de desvios focais em tempo real conforme a variação de espessura do tecido corneano.</p>
+                </div>
+                <div class="project-footer">
+                    <div class="project-techs">
+                        <span class="tech-badge tech-js">JavaScript</span>
+                        <span class="tech-badge tech-html">HTML5</span>
+                        <span class="tech-badge tech-css">CSS3</span>
+                    </div>
+                    <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="project-link">
+                        Acessar Repositório
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </a>
+                </div>
+            </article>
 
-Use o código com cuidado..project-card {background-color: var(--bg-card);border: 1px solid var(--border);border-radius: 8px;padding: 2.5rem;display: flex;flex-direction: column;justify-content: space-between;min-height: 320px;position: relative;overflow: hidden;transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s;}.project-card:hover {transform: translateY(-4px);border-color: rgba(var(--accent-rgb), 0.5);background-color: var(--bg-card-hover);}.project-lang-indicator {position: absolute;top: 2rem;right: 2rem;display: flex;align-items: center;}.project-card h3 {font-size: 1.35rem;margin-bottom: 1rem;padding-right: 2.5rem;}.project-desc {font-size: 0.95rem;color: var(--text-muted);line-height: 1.6;margin-bottom: 2rem;flex-grow: 1;}.project-footer {margin-top: auto;}.project-techs {display: flex;flex-wrap: wrap;gap: 0.5rem;margin-bottom: 1.5rem;}.tech-badge {font-size: 0.75rem;font-family: var(--font-heading);font-weight: 600;padding: 0.25rem 0.6rem;border-radius: 2px;text-transform: uppercase;letter-spacing: 0.05em;}.tech-js { background: rgba(247, 223, 30, 0.1); color: #f7df1e; }.tech-html { background: rgba(227, 79, 38, 0.1); color: #e34f26; }.tech-css { background: rgba(21, 114, 182, 0.1); color: #1572b6; }.tech-ts { background: rgba(49, 120, 198, 0.1); color: #3178c6; }.tech-python { background: rgba(55, 115, 165, 0.1); color: #3773a5; }.tech-webgl { background: rgba(153, 0, 0, 0.1); color: #ff3b30; }.project-link {display: inline-flex;align-items: center;gap: 0.5rem;color: var(--text-main);text-decoration: none;font-family: var(--font-heading);font-size: 0.9rem;font-weight: 500;transition: color 0.2s;}.project-link:hover {color: var(--accent);}/* Footer */footer {border-top: 1px solid var(--border);padding: 4rem 2rem;background-color: #06060a;}.footer-container {max-width: 1200px;margin: 0 auto;display: flex;justify-content: space-between;align-items: center;flex-wrap: wrap;gap: 2rem;}.footer-credit {font-size: 0.9rem;color: var(--text-muted);}/* Responsividade Mobile-First */@media (max-width: 968px) {.hero-grid {grid-template-columns: 1fr;text-align: center;}.hero-description {margin-left: auto;margin-right: auto;}.hero-actions {justify-content: center;}.hero-visual {order: -1;}.about-layout {grid-template-columns: 1fr;}.nav-links {display: none;}}BioÓpticaInícioO Olho HumanoEstruturasProjetosBioÓptica© 2026 Portfólio de Apresentação Científica. Desenvolvido sob rígidos padrões semânticos.document.addEventListener('DOMContentLoaded', () => {const sections = document.querySelectorAll('section');const observerOptions = {root: null,rootMargin: '0px',threshold: 0.1};const observer = new IntersectionObserver((entries, observer) => {entries.forEach(entry => {if (entry.isIntersecting) {entry.target.classList.add('visible');observer.unobserve(entry.target);}});}, observerOptions);sections.forEach(section => {observer.observe(section);});});
+            <!-- Card Projeto 2 -->
+            <article class="project-card">
+                <div class="project-lang-indicator">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3178c6" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                </div>
+                <div>
+                    <h3>Anatomy-3D-Rendering</h3>
+                    <p class="project-desc">Renderizador tridimensional estrito focado nas camadas concêntricas do olho (esclera, coroide e retina). Permite a manipulação livre de câmera e corte seccional dos tecidos.</p>
+                </div>
+                <div class="project-footer">
+                    <div class="project-techs">
+                        <span class="tech-badge tech-ts">TypeScript</span>
+                        <span class="tech-badge tech-webgl">WebGL</span>
+                    </div>
+                    <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="project-link">
+                        Acessar Repositório
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </a>
+                </div>
+            </article>
+
+            <!-- Card Projeto 3 -->
+            <article class="project-card">
+                <div class="project-lang-indicator">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3773a5" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                </div>
+                <div>
+                    <h3>Iris-Genetics-Predictor</h3>
+                    <p class="project-desc">Mapeador poligênico probabilístico implementado para calcular variações fenotípicas da cor da íris de acordo com a amostragem genética fornecida.</p>
+                </div>
+                <div class="project-footer">
+                    <div class="project-techs">
+                        <span class="tech-badge tech-python">Python</span>
+                        <span class="tech-badge tech-js">JavaScript</span>
+                    </div>
+                    <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="project-link">
+                        Acessar Repositório
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </a>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-container">
+            <span class="nav-logo">Bio<span>Óptica</span></span>
+            <p class="footer-credit">&copy; 2026 Portfólio de Apresentação Científica. Desenvolvido sob rígidos padrões semânticos.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('section');
+            
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>
