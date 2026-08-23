@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BioÓptica - Anatomia do Olho Humano</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* CSS Reset e Variáveis */
+        :root {
+            --bg-main: #0a0a0f;
+            --bg-card: #11111a;
+            --bg-card-hover: #161622;
+            --accent: #00d2ff;
+            --accent-rgb: 0, 210, 255;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --border: #1f1f2e;
+            --font-heading: 'Outfit', sans-serif;
+            --font-body: 'Source Sans 3', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            font-family: var(--font-body);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: var(--font-heading);
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+
+        /* Navbar Fixa */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+            background: rgba(10, 10, 15, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.25rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-family: var(--font-heading);
+            font-size: 1.25rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-main);
+            text-decoration: none;
+        }
+
+        .nav-logo span {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        /* Container de Seções */
+        section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 8rem 2rem;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 6rem;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 20%;
+            right: 10%;
+            width: 450px;
+            height: 450px;
+            background: radial-gradient(circle, rgba(var(--accent-rgb), 0.04) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 4rem;
+            align-items: center;
+            width: 100%;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-title span {
+            color: var(--accent);
+        }
+
+        .hero-description {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        /* Botões */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.85rem 1.75rem;
+            font-family: var(--font-heading);
+            font-size: 0.95rem;
+            font-weight: 500;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: var(--accent);
+            color: var(--bg-main);
+            font-weight: 600;
+        }
+
+        .btn-primary:hover {
+            background-color: #00bce6;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(var(--accent-rgb), 0.15);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--text-main);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--text-muted);
+            background-color: rgba(255, 255, 255, 0.02);
+        }
+
+        /* Ilustração Abstrata de Lente (SVG) */
+        .hero-visual svg {
+            width: 100%;
+            height: auto;
+            max-width: 380px;
+            display: block;
+            margin: 0 auto;
+        }
+
+        /* Sobre o Tema Section */
+        .section-header {
+            margin-bottom: 3.5rem;
+        }
+
+        .section-header span {
+            font-family: var(--font-heading);
+            color: var(--accent);
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 0.1em;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.25rem;
+        }
+
+        .about-layout {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 4rem;
+        }
+
+        .about-text p {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-anatomy {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 2.5rem;
+        }
+
+        .about-anatomy h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-main);
+        }
+
+        /* Skills/Badges Visuais */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .badge-tag {
+            background-color: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            padding: 0.4rem 0.9rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            transition: border-color 0.2s, background-color 0.2s;
+        }
+
+        .badge-tag:hover {
+            border-color: var(--accent);
+            background-color: rgba(var(--accent-rgb), 0.02);
+        }
+
+        /* Detalhes Anatômicos Expandidos */
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .detail-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 2rem;
+            transition: border-color 0.2s;
+        }
+
+        .detail-card:hover {
+            border-color: rgba(var(--accent-rgb), 0.4);
+        }
+
+        .detail-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.75rem;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .detail-card h3::before {
+            content: '';
+            display: inline-block;
+            width: 4px;
+            height: 16px;
+            background-color: var(--accent);
+            border-radius: 2px;
+        }
+
+        .detail-card p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* Mecanismo de Funcionamento do Olho */
+        .mechanism-box {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 3rem;
+            margin-top: 4rem;
+        }
+
+        .mechanism-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2.5rem;
+            margin-top: 2rem;
+        }
+
+        .step {
+            position: relative;
+        }
+
+        .step-num {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            font-weight: 700;
+            color: rgba(var(--accent-rgb), 0.2);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .step h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .step p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* Projetos Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 2rem;
+        }
+
+Use o código com cuidado..project-card {background-color: var(--bg-card);border: 1px solid var(--border);border-radius: 8px;padding: 2.5rem;display: flex;flex-direction: column;justify-content: space-between;min-height: 320px;position: relative;overflow: hidden;transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s;}.project-card:hover {transform: translateY(-4px);border-color: rgba(var(--accent-rgb), 0.5);background-color: var(--bg-card-hover);}.project-lang-indicator {position: absolute;top: 2rem;right: 2rem;display: flex;align-items: center;}.project-card h3 {font-size: 1.35rem;margin-bottom: 1rem;padding-right: 2.5rem;}.project-desc {font-size: 0.95rem;color: var(--text-muted);line-height: 1.6;margin-bottom: 2rem;flex-grow: 1;}.project-footer {margin-top: auto;}.project-techs {display: flex;flex-wrap: wrap;gap: 0.5rem;margin-bottom: 1.5rem;}.tech-badge {font-size: 0.75rem;font-family: var(--font-heading);font-weight: 600;padding: 0.25rem 0.6rem;border-radius: 2px;text-transform: uppercase;letter-spacing: 0.05em;}.tech-js { background: rgba(247, 223, 30, 0.1); color: #f7df1e; }.tech-html { background: rgba(227, 79, 38, 0.1); color: #e34f26; }.tech-css { background: rgba(21, 114, 182, 0.1); color: #1572b6; }.tech-ts { background: rgba(49, 120, 198, 0.1); color: #3178c6; }.tech-python { background: rgba(55, 115, 165, 0.1); color: #3773a5; }.tech-webgl { background: rgba(153, 0, 0, 0.1); color: #ff3b30; }.project-link {display: inline-flex;align-items: center;gap: 0.5rem;color: var(--text-main);text-decoration: none;font-family: var(--font-heading);font-size: 0.9rem;font-weight: 500;transition: color 0.2s;}.project-link:hover {color: var(--accent);}/* Footer */footer {border-top: 1px solid var(--border);padding: 4rem 2rem;background-color: #06060a;}.footer-container {max-width: 1200px;margin: 0 auto;display: flex;justify-content: space-between;align-items: center;flex-wrap: wrap;gap: 2rem;}.footer-credit {font-size: 0.9rem;color: var(--text-muted);}/* Responsividade Mobile-First */@media (max-width: 968px) {.hero-grid {grid-template-columns: 1fr;text-align: center;}.hero-description {margin-left: auto;margin-right: auto;}.hero-actions {justify-content: center;}.hero-visual {order: -1;}.about-layout {grid-template-columns: 1fr;}.nav-links {display: none;}}BioÓpticaInícioO Olho HumanoEstruturasProjetosBioÓptica© 2026 Portfólio de Apresentação Científica. Desenvolvido sob rígidos padrões semânticos.document.addEventListener('DOMContentLoaded', () => {const sections = document.querySelectorAll('section');const observerOptions = {root: null,rootMargin: '0px',threshold: 0.1};const observer = new IntersectionObserver((entries, observer) => {entries.forEach(entry => {if (entry.isIntersecting) {entry.target.classList.add('visible');observer.unobserve(entry.target);}});}, observerOptions);sections.forEach(section => {observer.observe(section);});});
